@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+message User {
+  string name = 1;
+  int32 id = 2;
+  string email = 3;
+}
+message Posts {
+  string user_id = 1;
+  User user = 2;
+  string message = 3;
+}
+
+service UserService {
+  rpc GetUser(User) returns (User);
+  rpc CreateUser(User) returns (Empty);
+  rpc CreatePost(Posts) returns (Empty);
+  rpc GetPosts(User) returns (Posts);
+}
+
+message Empty {}
